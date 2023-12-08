@@ -1,17 +1,32 @@
+// Function to rotate the compass
 function rotateCompass(degree) {
     var needle = document.getElementById('needle');
     needle.style.transform = `translate(-50%, -100%) rotate(${degree}deg)`;
 }
 
-if ('DeviceOrientationEvent' in window) {
-    window.addEventListener('deviceorientation', function(event) {
-        var alpha = event.alpha;
-        rotateCompass(alpha);
-    }, false);
-} else {
-    alert('Device Orientation is not supported by your device.');
-}
+// Initialize Gyronorm.js
+var gn = new Gyronorm();
 
+gn.init().then(function(){
+    gn.start(function(data){
+        // Use the alpha value for the compass direction
+        var alpha = data.do.alpha; 
+        rotateCompass(alpha);
+    });
+}).catch(function(e){
+    // Handle Gyronorm.js error or fallback to default device orientation
+    console.warn("Gyronorm.js error or not supported, fallback to default device orientation", e);
+    if ('DeviceOrientationEvent' in window) {
+        window.addEventListener('deviceorientation', function(event) {
+            var alpha = event.alpha;
+            rotateCompass(alpha);
+        }, false);
+    } else {
+        alert('Device Orientation is not supported by your device.');
+    }
+});
+
+// Geolocation functions
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition, showError);
