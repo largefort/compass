@@ -1,29 +1,24 @@
 #compass {
-    width: 300px;
-    height: 300px;
+    width: 300px; /* Increased size */
+    height: 300px; /* Increased size */
     border-radius: 50%;
-    border: 10px solid #333;
+    border: 10px solid #333; /* Thicker border for larger size */
     position: relative;
     margin: 50px auto;
-    background-image: url('compass-background.png');
+    background-image: url('compass-background.png'); /* Add a compass background image */
     background-size: cover;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Adding some shadow for depth */
 }
 
 #needle {
-    width: 6px;
-    height: 150px;
+    width: 6px; /* Slightly wider for better visibility */
+    height: 150px; /* Adjusted for the new size of the compass */
     background-color: red;
     position: absolute;
     top: 50%;
     left: 50%;
     transform-origin: 50% 100%;
     transform: translate(-50%, -100%);
-    border-radius: 2px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-}
-
-#location {
-    text-align: center;
-    margin-top: 20px;
+    border-radius: 2px; /* Rounded edges */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Adding some shadow for a 3D effect */
 }
